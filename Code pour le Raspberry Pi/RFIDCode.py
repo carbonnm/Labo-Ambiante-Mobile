@@ -43,7 +43,7 @@ while True:
             print('Ceci est la cle avec l id : {}'.format(uid))
             if RFID_UID == uid:
                 print('Ceci est la bonne cle')
-                #On pourrait rajouter du code par exemple allumer une led ou ouvrir le coffre avec le truc
+                #On pourrait rajouter du code par exemple allumer une led ou ouvrir le coffre avec le modèle HS-422
             else :
                 print('Ceci n est pas la bonne cle')
             time.sleep(1) #pour pas lire en boucle le même
