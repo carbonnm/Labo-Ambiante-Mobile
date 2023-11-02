@@ -17,15 +17,16 @@ servo.start(0)
 time.sleep(1)
 
 #Move the servo
-
-repetitions = 5
 duty = 2
-while repetitions > 0:
-    while duty <= 12:
-        servo.ChangeDutyCycle(duty)
-        duty += 1
-    repetitions -= 1
-    time.sleep(1)
+while duty <= 12:
+    servo.ChangeDutyCycle(duty)
+    duty += 1
+    time.sleep(0.1)
+
+while duty >= 2:
+    servo.ChangeDutyCycle(duty)
+    duty -= 1
+    time.sleep(0.1)
 
 #Fin 
 servo.stop()
