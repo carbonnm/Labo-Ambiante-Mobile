@@ -12,9 +12,8 @@ rfid.openWaitForAttachment(1000)
 try:
     while True:
         print("Hold the tag near the reader")
-        card_id, card_text = rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
-        print(card_id)
-        print(card_text)
+        rfid.write("TAG-1", RFIDProtocol.PROTOCOL_PHIDGETS, False)
+        rfid.close()
 
 finally:
     GPIO.cleanup()
