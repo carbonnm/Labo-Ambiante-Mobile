@@ -37,7 +37,7 @@ while True:
                 #print('Ceci n est pas la bonne cle')
             time.sleep(1) #pour pas lire en boucle le même
 """
-if rfid.tagPresent():
+if rfid.getTagPresent():
     print(rfid.getLastTag())
-    
+
 rfid.setAntennaEnabled(False)
