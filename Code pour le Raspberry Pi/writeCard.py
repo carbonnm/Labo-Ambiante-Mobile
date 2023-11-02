@@ -8,7 +8,7 @@ GPIO.setwarnings(False) #plus de messages d'alertes
 
 rfid = RFID()
 
-rfid.openWaitForAttachment(1000)
+rfid.openWaitForAttachment(2000)
 try:
     while True:
         print("Hold the tag near the reader")
