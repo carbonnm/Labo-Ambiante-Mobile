@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from Phidget22.Phidget import *
 from Phidget22.Devices.RFID import *
 import time 
 
