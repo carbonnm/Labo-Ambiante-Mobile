@@ -13,7 +13,7 @@ rfid.openWaitForAttachment(1000)
 rfid.setAntennaEnabled(True)
 
 #Write 
-rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
+#rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
 
 time.sleep(1)
 
