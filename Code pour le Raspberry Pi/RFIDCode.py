@@ -17,24 +17,9 @@ rfid.setAntennaEnabled(True)
 
 time.sleep(1)
 
-while True:
-    rfid.getTagPresent()
-    print(rfid.getLastTag())
-    #Si une puce est lue, on récup ses infos
-    (error, tag_typ) = rfid.request()
+rfid.getTagPresent()
+print(rfid.getLastTag())
 
-    if not error:
-        # utile si plusieurs puces passent en même temps
-        (error, uid) = rfid.anticoll()
-
-        if not error :
-            # On affiche l'id de la cle lue
-            print('Ceci est la cle avec l id : {}'.format(uid))
-            #if RFID_UID == uid:
-                #print('Ceci est la bonne cle')
-                #On pourrait rajouter du code par exemple allumer une led ou ouvrir le coffre avec le modèle HS-422
-            #else :
-                #print('Ceci n est pas la bonne cle')
-            time.sleep(1) #pour pas lire en boucle le même
+time.sleep(1)
 
 rfid.setAntennaEnabled(False)
