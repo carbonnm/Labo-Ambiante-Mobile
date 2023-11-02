@@ -8,6 +8,7 @@ GPIO.setwarnings(False) #plus de messages d'alertes
 
 rfid = RFID()
 
+rfid.openWaitForAttachment(1000)
 try:
     while True:
         text = input("Enter the text to write: ")
