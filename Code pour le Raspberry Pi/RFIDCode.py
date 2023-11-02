@@ -18,7 +18,8 @@ rfid.setAntennaEnabled(True)
 time.sleep(1)
 
 while True:
-    rfid.wait_for_tag()
+    rfid.getTagPresent()
+    print(rfid.getLastTag())
     #Si une puce est lue, on récup ses infos
     (error, tag_typ) = rfid.request()
 
