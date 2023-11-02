@@ -17,7 +17,6 @@ rfid.setAntennaEnabled(True)
 
 time.sleep(1)
 
-"""
 while True:
     rfid.wait_for_tag()
     #Si une puce est lue, on récup ses infos
@@ -36,8 +35,5 @@ while True:
             #else :
                 #print('Ceci n est pas la bonne cle')
             time.sleep(1) #pour pas lire en boucle le même
-"""
-if rfid.getTagPresent():
-    print(rfid.getLastTag())
 
 rfid.setAntennaEnabled(False)
