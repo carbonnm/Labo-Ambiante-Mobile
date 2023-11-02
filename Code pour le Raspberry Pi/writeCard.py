@@ -12,7 +12,7 @@ try:
     while True:
         text = input("Enter the text to write: ")
         print("Hold the tag near the reader")
-        card_id, card_text = rfid.write(text)
+        card_id, card_text = rfid.write(text, RFIDProtocol.PROTOCOL_EM4100, False)
         print(card_id)
         print(card_text)
 
