@@ -8,9 +8,13 @@ GPIO.setwarnings(False) #plus de messages d'alertes
 
 rfid = RFID()
 print('je suis en attente d une clé')
-rfid.openWaitForAttachement(1000)
+rfid.openWaitForAttachment(1000)
 
 rfid.setAntennaEnabled(True)
+
+#Write 
+rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
+
 time.sleep(1)
 
 """
