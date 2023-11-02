@@ -6,7 +6,7 @@ import time
 
 #Habituellement, on attache le servo à la pin 11 du raspberry, qui sera donc un pin d'output
 
-GPIO.setmode(GPIO.board)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT)
 
 #Création du RCServo avec une fréquence de 50 Hz
@@ -22,11 +22,11 @@ repetitions = 5
 duty = 2
 while repetitions > 0:
     while duty <= 12:
-        servo1.ChangeDutyCycle(duty)
+        servo.ChangeDutyCycle(duty)
         duty += 1
     repetitions -= 1
     time.sleep(1)
 
 #Fin 
 servo.stop()
-GPIO.cleanp()
+GPIO.cleanup()
