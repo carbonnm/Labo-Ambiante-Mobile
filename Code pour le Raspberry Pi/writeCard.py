@@ -11,9 +11,8 @@ rfid = RFID()
 rfid.openWaitForAttachment(1000)
 try:
     while True:
-        text = input("Enter the text to write: ")
         print("Hold the tag near the reader")
-        card_id, card_text = rfid.write(text, RFIDProtocol.PROTOCOL_EM4100, False)
+        card_id, card_text = rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
         print(card_id)
         print(card_text)
 
