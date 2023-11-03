@@ -13,6 +13,7 @@ try:
     while True:
         print("Hold the tag near the reader")
         rfid.write("TAG-1", RFIDProtocol.PROTOCOL_PHIDGETS, False)
+        time.sleep(2)
         rfid.close()
 
 finally:
