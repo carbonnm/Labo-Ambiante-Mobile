@@ -1,31 +1,23 @@
-import RPi.GPIO as GPIO
 from Phidget22.Phidget import *
 from Phidget22.Devices.RFID import *
 import time
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
+def onTag(self, tag, protocol):
+	print("Tag: " + str(tag))
+	print("Protocol: " + str(protocol))
 
-rfid = RFID()
+ch = RFID()
 
-def onTagHandler(e):
-    tag_data = e.Tag
-    print("Tag RFID lu : " + tag_data)
+ch.openWaitForAttachment(1000)
 
-# Définissez la fonction de rappel pour la lecture du tag
-rfid.setOnTagHandler(onTagHandler)
+ch.setAntennaEnabled(True)
 
-try:
-    rfid.openWaitForAttachment(2000)
-    
-    # On doit activer l'antenne pour pouvoir lire les tags
-    rfid.setAntennaEnabled(True)
+# Register for event before calling open
+ch.setOnTagHandler(onTag)
 
-    while True:
-        time.sleep(1)
+ch.open()
 
-except PhidgetException as e:
-    print("Erreur Phidget : " + str(e))
-
-finally:
-    GPIO.cleanup()
+while True:
+	# Do work, wait for events, etc.
+	time.sleep(1)
+	
