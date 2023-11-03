@@ -8,13 +8,24 @@ GPIO.setwarnings(False)
 
 rfid = RFID()
 
-rfid.openWaitForAttachment(2000)
+def onTagHandler(e):
+    tag_data = e.Tag
+    print("Tag RFID lu : " + tag_data)
 
-#On doit l'enable pour pouvoir lire les tags
-rfid.setAntennaEnabled(True)
+# Définissez la fonction de rappel pour la lecture du tag
+rfid.setOnTagHandler(onTagHandler)
 
-val = rfid.getLastTag()
-print("****")
-print(val)
+try:
+    rfid.openWaitForAttachment(2000)
+    
+    # On doit activer l'antenne pour pouvoir lire les tags
+    rfid.setAntennaEnabled(True)
 
-rfid.close()
+    while True:
+        time.sleep(1)
+
+except PhidgetException as e:
+    print("Erreur Phidget : " + str(e))
+
+finally:
+    GPIO.cleanup()
