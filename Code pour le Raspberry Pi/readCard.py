@@ -1,28 +1,24 @@
 import RPi.GPIO as GPIO
 from Phidget22.Phidget import *
 from Phidget22.Devices.RFID import *
-import time 
+import time
 
-GPIO.setmode(GPIO.BOARD) #numérotation sur le board
-GPIO.setwarnings(False) #plus de messages d'alertes
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
 
 rfid = RFID()
-print('je suis en attente d une clé')
-rfid.openWaitForAttachment(1000)
+
+def onTagHandler(e):
+    print("Tag RFID lu : " + e.Tag)
+
+rfid.setOnTagHandler(onTagHandler)
 
 try:
+    rfid.openWaitForAttachment(2000)
+
     while True:
         print("Hold the tag near the reader")
+        time.sleep(1)
 
-        # Essayez de lire le tag
-        tag_data = rfid.readTag()
-        
-        if tag_data is not None:
-            print("Données lues du tag RFID : " + tag_data)
-        else:
-            print("Aucune donnée lue sur le tag RFID")
-
-        # Fermez le lecteur RFID
-        rfid.close()
 finally:
     GPIO.cleanup()
