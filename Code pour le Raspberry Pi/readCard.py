@@ -19,5 +19,6 @@ ch.open()
 
 while True:
 	# Do work, wait for events, etc.
-	time.sleep(1)
+    print(ch.getTagPresent())
+    time.sleep(1)
 	
