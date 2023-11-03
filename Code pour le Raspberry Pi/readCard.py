@@ -10,18 +10,19 @@ rfid = RFID()
 print('je suis en attente d une clé')
 rfid.openWaitForAttachment(1000)
 
-rfid.setAntennaEnabled(True)
+try:
+    while True:
+        print("Hold the tag near the reader")
 
-#Write 
-#rfid.write("0x0000000000", RFIDProtocol.PROTOCOL_EM4100, False)
+        # Essayez de lire le tag
+        tag_data = rfid.readTag()
+        
+        if tag_data is not None:
+            print("Données lues du tag RFID : " + tag_data)
+        else:
+            print("Aucune donnée lue sur le tag RFID")
 
-time.sleep(1)
-
-tagPresent = rfid.getTagPresent()
-print("TagPresent: " + str(tagPresent))
-
-time.sleep(1)
-
-rfid.setAntennaEnabled(False)
-
-rfid.close()
+        # Fermez le lecteur RFID
+        rfid.close()
+finally:
+    GPIO.cleanup()
