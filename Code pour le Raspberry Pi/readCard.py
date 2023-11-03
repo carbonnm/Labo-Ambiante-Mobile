@@ -17,9 +17,11 @@ rfid.setAntennaEnabled(True)
 
 time.sleep(1)
 
-rfid.getTagPresent()
-print(rfid.getLastTag())
+tagPresent = rfid.getTagPresent()
+print("TagPresent: " + str(tagPresent))
 
 time.sleep(1)
 
 rfid.setAntennaEnabled(False)
+
+rfid.close()
