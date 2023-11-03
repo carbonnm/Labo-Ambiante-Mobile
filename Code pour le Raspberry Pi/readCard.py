@@ -8,17 +8,13 @@ GPIO.setwarnings(False)
 
 rfid = RFID()
 
-def onTagHandler(e):
-    print("Tag RFID lu : " + e.Tag)
+rfid.openWaitForAttachment(2000)
 
-try:
-    rfid.openWaitForAttachment(2000)
+#On doit l'enable pour pouvoir lire les tags
+rfid.setAntennaEnabled(True)
 
-    while True:
-        print("Hold the tag near the reader")
-        rfid.setOnTagHandler(onTagHandler)
+val = rfid.getLastTag()
+print("****")
+print(val)
 
-        time.sleep(1)
-
-finally:
-    GPIO.cleanup()
+rfid.close()
