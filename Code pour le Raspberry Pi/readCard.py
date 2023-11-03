@@ -11,13 +11,13 @@ rfid = RFID()
 def onTagHandler(e):
     print("Tag RFID lu : " + e.Tag)
 
-rfid.setOnTagHandler(onTagHandler)
-
 try:
     rfid.openWaitForAttachment(2000)
 
     while True:
         print("Hold the tag near the reader")
+        rfid.setOnTagHandler(onTagHandler)
+
         time.sleep(1)
 
 finally:
