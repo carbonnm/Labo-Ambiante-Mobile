@@ -17,7 +17,6 @@ int [] [] tilemap = {
 
 int rows, cols ;
 int cellWidth, cellHeight;
-ArrayList<TuioObject> listObjects = tuioClient.getTuioObjectList();
 
 void setup() {
   size(640, 640);
@@ -30,6 +29,7 @@ void setup() {
 
 void draw() {
   background(120);
+  ArrayList<TuioObject> listObjects = tuioClient.getTuioObjectList();
   renderMap();
 }
 
