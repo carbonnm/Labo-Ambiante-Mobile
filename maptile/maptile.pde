@@ -1,3 +1,6 @@
+import TUIO.*;
+
+TuioProcessing tuioClient;
 
 int [] [] tilemap = {
   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -14,9 +17,11 @@ int [] [] tilemap = {
 
 int rows, cols ;
 int cellWidth, cellHeight;
+ArrayList<TuioObject> listObjects = tuioClient.getTuioObjectList();
 
 void setup() {
   size(640, 640);
+  tuioClient = new TuioProcessing(this);
   rows = tilemap.length;
   cols = tilemap[0].length;
   cellWidth = 64;
@@ -45,4 +50,17 @@ void renderMap() {
       }
     }
   }
+}
+
+//Code reactivision
+void addTuioObject(TuioObject tobject) {
+  println("ID : " + tobject.getSymbolID() + "Session ID : (" + tobject.getSessionID() + ") " + "Position x : " + tobject.getX() + "Position y : " + tobject.getY() + "Rotation : " + tobject.getAngle());
+}
+
+void updateTuioObject(TuioObject tobject) {
+  println("ID : " + tobject.getSymbolID() + "Session ID : (" + tobject.getSessionID() + ") " + "Position x : " + tobject.getX() + "Position y : " + tobject.getY() + "Rotation : " + tobject.getAngle());
+}
+
+void removeTuioObject(TuioObject tobject) {
+  println("ID : " + tobject.getSymbolID() + "Session ID : (" + tobject.getSessionID() + ") ");
 }
