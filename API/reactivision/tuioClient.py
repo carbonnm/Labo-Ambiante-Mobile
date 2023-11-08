@@ -1,5 +1,6 @@
 import subprocess
 
+
 process = subprocess.Popen(["maptile.pde"], stdout=subprocess.PIPE)
 
 while True:
