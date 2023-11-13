@@ -35,9 +35,9 @@ GPIO.cleanup()
 """
 
 from gpiozero import Servo, Device
+from gpiozero.pins.rpigpio import RPiGPIOFactory
 
 # Spécifiez explicitement le pilote de broche RPi.GPIO
-Device.pin_factory = None  # Réinitialise le pilote par défaut
 Device.pin_factory = RPiGPIOFactory()
 
 # Utilisez le numéro de la broche GPIO connectée au servo
