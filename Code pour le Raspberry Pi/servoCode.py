@@ -39,7 +39,7 @@ from time import sleep
 
 # Utilisez le numéro de la broche GPIO connectée au servo
 # (par exemple, la broche 17, mais cela dépend de votre configuration)
-servo = Servo(11)
+servo = Servo(17)
 
 while True:
     servo.min()
