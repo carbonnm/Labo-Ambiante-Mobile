@@ -35,16 +35,12 @@ GPIO.cleanup()
 """
 
 from gpiozero import Servo
-from time import sleep
+from gpiozero.tools import sin_values
+from signal import pause
 
-# Utilisez le numéro de la broche GPIO connectée au servo
-# (par exemple, la broche 17, mais cela dépend de votre configuration)
 servo = Servo(17)
 
-while True:
-    servo.min()
-    sleep(1)
-    servo.mid()
-    sleep(1)
-    servo.max()
-    sleep(1)
+servo.source = sin_values()
+servo.source_delay = 0.1
+
+pause()
