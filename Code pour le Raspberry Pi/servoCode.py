@@ -34,13 +34,19 @@ servo.stop()
 GPIO.cleanup()
 """
 
-from gpiozero import Servo
-from gpiozero.tools import sin_values
-from signal import pause
+from gpiozero import Servo, Device
 
+# Spécifiez explicitement le pilote de broche RPi.GPIO
+Device.pin_factory = None  # Réinitialise le pilote par défaut
+Device.pin_factory = RPiGPIOFactory()
+
+# Utilisez le numéro de la broche GPIO connectée au servo
 servo = Servo(17)
 
-servo.source = sin_values()
-servo.source_delay = 0.1
-
-pause()
+while True:
+    servo.min()
+    sleep(1)
+    servo.mid()
+    sleep(1)
+    servo.max()
+    sleep(1)
