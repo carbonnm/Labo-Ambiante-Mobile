@@ -9,3 +9,4 @@ Werkzeug==2.0.3
 WTForms==3.0.1
 flask-restful
 Phidget22
+RPi.GPIO==0.7.1

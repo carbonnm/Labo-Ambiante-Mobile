@@ -23,6 +23,7 @@ class HelloWorld(Resource):
         return {'hello': 'world'}
 
 api.add_resource(HelloWorld, '/')
+#api.add_resource(AmbianceRessource, '/ambiance/<int:button_id>')
 
 @app.errorhandler(404)
 def page_not_found(e):
