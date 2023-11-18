@@ -4,6 +4,7 @@ from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO
 from config import Config
+from flask_restful import Resource, Api
 
 def initDB():
     """
@@ -16,6 +17,8 @@ def initDB():
 
 app = Flask(__name__)
 app.config.from_object(Config)
+api = Api(app)
+
 
 # Database part :
 db = SQLAlchemy(app)
@@ -25,5 +28,6 @@ socketio = SocketIO(app)
 
 from application import routes
 from application import models
+from application import api
 
 initDB()
