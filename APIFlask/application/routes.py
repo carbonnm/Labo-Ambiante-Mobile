@@ -15,6 +15,8 @@ from werkzeug.exceptions import abort
 
 from application.models import *
 
+from sensors.coffre.coffre import Coffre
+
 
 class HelloWorld(Resource):
     def get(self):
