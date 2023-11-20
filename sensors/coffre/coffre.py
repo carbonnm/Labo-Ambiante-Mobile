@@ -24,7 +24,7 @@ class Coffre:
 
 
 coffre = Coffre
-if coffre.has_to_open():
-    coffre.open()
+if coffre.has_to_open(coffre):
+    coffre.open(coffre)
 
 GPIO.cleanup()
