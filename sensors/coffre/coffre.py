@@ -1,5 +1,5 @@
-from coffre.phidgets.motor import Motor
-from coffre.phidgets.rfid import Rfid
+from sensors.coffre.phidgets.motor import Motor
+from sensors.coffre.phidgets.rfid import Rfid
 
 import RPi.GPIO as GPIO
 import time
