@@ -1,5 +1,5 @@
 from phidgets.motor import Motor
-from phidgets.rfid import Rfid
+from phidgets.rfid import RFIDReader
 
 import RPi.GPIO as GPIO
 import time
@@ -12,8 +12,8 @@ class Coffre:
         #self.rfid = Rfid()
 
     def has_to_open(self):
-        rfid = Rfid()
-        if rfid.getTagPresent() == True:
+        rfid = RFIDReader()
+        if rfid.start() == True:
             print("J'ai trouvé un tag")
             return True
         return False
