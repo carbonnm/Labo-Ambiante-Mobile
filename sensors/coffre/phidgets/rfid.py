@@ -9,6 +9,6 @@ class Rfid :
         self.rfid.setAntennaEnabled(True)
         self.rfid.setOnTagHandler(onTag)
 
-    def onTag(self, tag, protocol):
+    def onTag(self, tag) :
 	    print("Tag: " + str(tag))
-	    print("Protocol: " + str(protocol))
+        #print("Protocol: " + str(protocol))
