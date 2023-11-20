@@ -1,42 +1,27 @@
-from Phidget22.Phidget import *
-from Phidget22.Devices.RCServo import *
-import time
 import RPi.GPIO as GPIO
+import time
 
 class Motor:
-    def __init__(self):
+    def __init__(self, pin):
+        self.pin = pin
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(11, GPIO.OUT)
-        try:
-            self.motor = GPIO.PWM(11, 50)
-            self.motor.start(0)
-            time.sleep(1)
-            #self.motor.openWaitForAttachment(1000)
-        except PhidgetException as e:
-            print(f"Erreur lors de l'initialisation du moteur : {e.details}")
-            # Ajoutez ici tout code de gestion de l'erreur nécessaire.
-        except Exception as e:
-            print(f"Erreur inattendue : {e}")
+        GPIO.setup(self.pin, GPIO.OUT)
+        self.servo = GPIO.PWM(self.pin, 50)
+        self.servo.start(0)
+        time.sleep(1)
 
-    def set_position(self, degree):
-        self.motor.setVelocityLimit(30)
-        self.motor.setTargetPosition(degree)
-        self.motor.setEngaged(True)
-        time.sleep(3)
-        self.motor.setEngaged(False)
-    
-    def move_motor(self) :
-        duty = 2
-        while duty <= 12:
-            self.motor.ChangeDutyCycle(duty)
-            duty += 1
-            time.sleep(0.1)
+    def move_servo(self, start_duty, end_duty, step, delay):
+        duty_cycle = start_duty
+        while duty_cycle <= end_duty:
+            self.servo.ChangeDutyCycle(duty_cycle)
+            duty_cycle += step
+            time.sleep(delay)
 
-        while duty >= 2:
-            self.motor.ChangeDutyCycle(duty)
-            duty -= 1
-            time.sleep(0.1)
+        while duty_cycle >= start_duty:
+            self.servo.ChangeDutyCycle(duty_cycle)
+            duty_cycle -= step
+            time.sleep(delay)
 
-    def close_motor(self):
-        self.motor.close()
+    def stop(self):
+        self.servo.stop()
         GPIO.cleanup()

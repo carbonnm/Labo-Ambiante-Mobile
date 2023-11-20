@@ -8,16 +8,31 @@ class Coffre:
     def __init__(self) :
         self.is_open = False
         
-        self.motor = Motor()
-        self.rfid = Rfid()
+        #self.motor = Motor(11)
+        #self.rfid = Rfid()
 
     def has_to_open(self):
-        if self.rfid.getTagPresent() == True:
+        rfid = Rfid()
+        if rfid.getTagPresent() == True:
+            print("J'ai trouvé un tag")
             return True
         return False
 
     def open(self) :
-        self.motor.set_position(90)
+        try:
+            servo_motor = Motor(11)
+            servo_motor.move_servo(2, 12, 1, 0.1)
+
+        except KeyboardInterrupt:
+            servo_motor.stop()
+            print("Arrêt manuel du programme.")
+
+        except Exception as e:
+            print(f"Une erreur est survenue : {e}")
+
+        finally:
+            servo_motor.stop()
+            print("Programme terminé.")
 
 
 coffre = Coffre()
