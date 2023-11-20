@@ -5,5 +5,5 @@ import time
 class Rfid : 
     def __init__(self) :
         self.rfid = RFID()
-        self.rfid.openWaitForAttachement(1000)
+        self.rfid.openWaitForAttachment(1000)
         self.rfid.setAntennaEnabled(True)
