@@ -20,11 +20,11 @@ class Coffre:
         return False
 
     def open(self) :
-        self.motor.set_position(self, 90)
+        self.motor.set_position(90)
 
 
-coffre = Coffre
-if coffre.has_to_open(coffre):
-    coffre.open(coffre)
+coffre = Coffre()
+if coffre.has_to_open():
+    coffre.open()
 
 GPIO.cleanup()
