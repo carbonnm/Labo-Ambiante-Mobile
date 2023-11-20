@@ -4,9 +4,6 @@ from phidgets.rfid import Rfid
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
-
 class Coffre:
     def __init__(self) :
         self.is_open = False
