@@ -8,6 +8,15 @@ class Coffre:
         self.motor = Motor()
         self.rfid = Rfid()
 
+    def has_to_open(self):
+        if self.rfid.getTagPresent() == True:
+            return True
+        return False
+
     def open(self) :
-        """Ici mettre le code pour ouvrir le coffre"""
-        pass
+        self.motor.set_position(self, 90)
+
+
+coffre = Coffre
+if coffre.has_to_open():
+    coffre.open()
