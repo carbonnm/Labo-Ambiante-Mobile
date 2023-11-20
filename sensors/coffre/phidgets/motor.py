@@ -4,8 +4,14 @@ import time
 
 class Motor:
     def __init__(self):
-        self.motor = RCServo()
-        self.motor.openWaitForAttachment(1000)
+        try:
+            self.motor = RCServo()
+            self.motor.openWaitForAttachment(1000)
+        except PhidgetException as e:
+            print(f"Erreur lors de l'initialisation du moteur : {e.details}")
+            # Ajoutez ici tout code de gestion de l'erreur nécessaire.
+        except Exception as e:
+            print(f"Erreur inattendue : {e}")
 
     def set_position(self, degree):
         self.motor.setVelocityLimit(30)
