@@ -1,4 +1,3 @@
-"""
 import RPi.GPIO as GPIO
 import time
 
@@ -32,21 +31,3 @@ while duty >= 2:
 #Fin 
 servo.stop()
 GPIO.cleanup()
-"""
-
-from gpiozero import Servo, Device
-from gpiozero.pins.rpigpio import RPiGPIOFactory
-
-# Spécifiez explicitement le pilote de broche RPi.GPIO
-Device.pin_factory = RPiGPIOFactory()
-
-# Utilisez le numéro de la broche GPIO connectée au servo
-servo = Servo(17)
-
-while True:
-    servo.min()
-    sleep(1)
-    servo.mid()
-    sleep(1)
-    servo.max()
-    sleep(1)
