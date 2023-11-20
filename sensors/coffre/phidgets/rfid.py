@@ -15,14 +15,14 @@ class RFIDReader:
             self.ch.openWaitForAttachment(1000)
             self.ch.setAntennaEnabled(True)
             # Register for event before calling open
-            self.ch.setOnTagHandler(self.on_tag)
+            #self.ch.setOnTagHandler(self.on_tag)
             self.ch.open()
 
-            time.sleep(1)
+            while True:
                 # Do work, wait for events, etc.
-            if self.ch.getTagPresent() == True:
-                return True
-            time.sleep(1)
+                if self.ch.getTagPresent() == True:
+                    return True
+                time.sleep(1)
 
         except PhidgetException as e:
             print(f"Phidget Exception: {e}")
