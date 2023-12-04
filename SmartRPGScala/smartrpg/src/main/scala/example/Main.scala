@@ -6,7 +6,7 @@ object Main extends App {
   val gpio: GpioController = GpioFactory.getInstance()
 
   // Créer une sortie GPIO pour la broche GPIO 1
-  val pin: GpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.HIGH)
+  val pin: GpioPinDigitalOutput = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_7, "MyLED", PinState.HIGH)
 
   // Allumer la LED
   pin.high()

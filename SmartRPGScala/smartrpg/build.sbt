@@ -9,7 +9,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "SmartRPG",
     libraryDependencies += munit % Test,
-    libraryDependencies += "com.pi4j" % "pi4j-core" % "2.4"
+    libraryDependencies += "com.pi4j" % "pi4j-parent" % "1.2"
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
