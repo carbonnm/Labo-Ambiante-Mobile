@@ -7,6 +7,12 @@ import akka.actor.typed.scaladsl.AbstractBehavior
 import akka.actor.typed.scaladsl.ActorContext
 import akka.actor.typed.scaladsl.Behaviors
 
+object IoTSupervisor {
+    def apply() : Behavior[Nothing] = {
+        Behaviors.setup[Nothing](context => new IoTSupervisor(context))
+    }
+}
+
 class IoTSupervisor(context : ActorContext[Nothing]) extends AbstractBehavior[Nothing](context) {
     context.log.info("IoT Application started")
 
@@ -20,11 +26,5 @@ class IoTSupervisor(context : ActorContext[Nothing]) extends AbstractBehavior[No
             context.log.info("IoT Application stopped")
             this
         }
-    }
-}
-
-object IoTSupervisor {
-    def apply() : Behavior[Nothing] = {
-        Behaviors.setup[Nothing](context => new IoTSupervisor(context))
     }
 }
