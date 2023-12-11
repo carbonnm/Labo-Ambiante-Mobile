@@ -15,6 +15,7 @@ object Speaker {
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
+    case object Passivate extends Command
 }
 
 class Speaker(context: ActorContext[Speaker.Command], groupId: String, deviceId: String) extends AbstractBehavior[Speaker.Command](context) {
@@ -26,6 +27,9 @@ class Speaker(context: ActorContext[Speaker.Command], groupId: String, deviceId:
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
             //Différents cas de messages
+            case Passivate => {
+                Behaviors.stopped
+            }
         }
     }
 

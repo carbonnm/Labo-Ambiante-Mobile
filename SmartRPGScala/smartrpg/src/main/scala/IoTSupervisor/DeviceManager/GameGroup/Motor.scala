@@ -15,6 +15,7 @@ object Motor {
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
+    case object Passivate extends Command
 }
 
 class Motor(context: ActorContext[Motor.Command], groupId: String, deviceId: String) extends AbstractBehavior[Motor.Command](context) {
@@ -26,6 +27,9 @@ class Motor(context: ActorContext[Motor.Command], groupId: String, deviceId: Str
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
             //Différents cas de messages
+            case Passivate => {
+                Behaviors.stopped
+            }
         }
     }
 

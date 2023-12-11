@@ -15,6 +15,7 @@ object Dice {
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
+    case object Passivate extends Command
 }
 
 class Dice(context: ActorContext[Dice.Command], groupId: String, deviceId: String) extends AbstractBehavior[Dice.Command](context) {
@@ -26,6 +27,9 @@ class Dice(context: ActorContext[Dice.Command], groupId: String, deviceId: Strin
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
             //Différents cas de messages
+            case Passivate => {
+                Behaviors.stopped
+            }
         }
     }
 

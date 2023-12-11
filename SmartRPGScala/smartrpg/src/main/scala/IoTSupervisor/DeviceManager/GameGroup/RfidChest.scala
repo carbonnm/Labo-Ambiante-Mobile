@@ -15,6 +15,7 @@ object RfidChest {
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
+    case object Passivate extends Command
 }
 
 class RfidChest(context: ActorContext[RfidChest.Command], groupId: String, deviceId: String) extends AbstractBehavior[RfidChest.Command](context) {
@@ -26,6 +27,9 @@ class RfidChest(context: ActorContext[RfidChest.Command], groupId: String, devic
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
             //Différents cas de messages
+            case Passivate => {
+                Behaviors.stopped
+            }
         }
     }
 

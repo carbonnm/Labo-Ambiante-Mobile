@@ -15,6 +15,7 @@ object Map {
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
+    case object Passivate extends Command
 }
 
 class Map(context: ActorContext[Map.Command], groupId: String, deviceId: String) extends AbstractBehavior[Map.Command](context) {
@@ -26,6 +27,9 @@ class Map(context: ActorContext[Map.Command], groupId: String, deviceId: String)
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
             //Différents cas de messages
+            case Passivate => {
+                Behaviors.stopped
+            }
         }
     }
 
