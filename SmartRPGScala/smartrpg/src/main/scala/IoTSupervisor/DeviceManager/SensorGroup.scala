@@ -9,31 +9,30 @@ import akka.actor.typed.scaladsl.ActorContext
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.scaladsl.LoggerOps
 
-object GameGroup {
+object SensorGroup {
     def apply(groupId: String) : Behavior[Command] = {
-        Behaviors.setup(context => new GameGroup(context, groupId))
+        Behaviors.setup(context => new SensorGroup(context, groupId))
     }
     // Ici on définit les différentes commandes (et réponses)
     sealed trait Command
 }
 
-class GameGroup(context: ActorContext[GameGroup.Command], groupId: String) extends AbstractBehavior[GameGroup.Command](context) {
-    import GameGroup._
+class SensorGroup(context: ActorContext[SensorGroup.Command], groupId: String) extends AbstractBehavior[SensorGroup.Command](context) {
+    import SensorGroup._
     //Ici j'import ce dont j'ai besoin du DeviceManager
     import DeviceManager.{ DeviceRegistered, ReplyDeviceList, RequestDeviceList, RequestTrackDevice }
 
-    //Utilisation d'un map pour chercher les enfants acteurs (sera soit un lecteur RFID soit un moteur pour nous)
-    private var gameIdToActor = Map.empty[String, ActorRef[_]]
+    //Utilisation d'un map pour chercher les enfants acteurs (à adapter pour nous donc)
+    private var deviceIdToActor = Map.empty[String, ActorRef[Device.Command]]
 
 
     //Log start
-    context.log.info("GameGroup {} started", groupId)
+    context.log.info("SensorGroup {} started", groupId)
 
     override def onMessage(msg: Command): Behavior[Command] = {
         msg match {
-            //groupID à définir mieux en string
-            case trackMsg @ RequestTrackDevice("groupId", deviceId, replyTo) =>
-                gameIdToActor.get(deviceId) match {
+            case trackMsg @ RequestTrackDevice(`groupId`, deviceId, replyTo) =>
+                deviceIdToActor.get(deviceId) match {
                     //Existe déjà
                     case Some(deviceActor) => {
                         replyTo ! DeviceRegistered(deviceActor)
@@ -41,14 +40,14 @@ class GameGroup(context: ActorContext[GameGroup.Command], groupId: String) exten
                     //Il faut le créer
                     case None => {
                         context.log.info("Creating device actor for {}", trackMsg.deviceId)
-                        //Ici au lieu d'avoir Device on aura RfidChest et Motor ensemble
                         val deviceActor = context.spawn(Device(groupId, deviceId), s"device-$deviceId")
-                        gameIdToActor += deviceId -> deviceActor
+                        deviceIdToActor += deviceId -> deviceActor
                         replyTo ! DeviceRegistered(deviceActor)
                     }
                 }
                 this
 
+            //Wrong group
             case RequestTrackDevice(gId, _, _) => {
                 context.log.warn2("Ignoring TrackDevice request for {}. This actor is responsible for {}.", gId, groupId)
                 this
@@ -58,7 +57,7 @@ class GameGroup(context: ActorContext[GameGroup.Command], groupId: String) exten
 
     override def onSignal: PartialFunction[Signal, Behavior[Command]] = {
         case PostStop => {
-            context.log.info("GamereGroup {} stopped", groupId)
+            context.log.info("SensorGroup {} stopped", groupId)
             this
         }
     }

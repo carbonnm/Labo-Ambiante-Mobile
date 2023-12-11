@@ -15,7 +15,9 @@ lazy val root = (project in file("."))
     libraryDependencies += munit % Test,
     libraryDependencies += "com.typesafe.akka" %% "akka-remote" % AkkaVersion,
     libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.6"
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.6",
+    libraryDependencies += "com.lightbend.akka" %% "akka-stream-alpakka-mqtt" % "7.0.1",
+    libraryDependencies += "com.typesafe.akka" %% "akka-stream" % AkkaVersion
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
