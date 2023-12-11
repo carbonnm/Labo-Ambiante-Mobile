@@ -12,10 +12,9 @@ import akka.actor.typed.scaladsl.LoggerOps
 object Map {
     def apply(groupId: String, deviceId: String): Behavior[Command] = {
         Behaviors.setup(context => new Map(context, groupId, deviceId))
-
-        // Ici on définit les différentes commandes (et réponses)
-        sealed trait Command
     }
+    // Ici on définit les différentes commandes (et réponses)
+    sealed trait Command
 }
 
 class Map(context: ActorContext[Map.Command], groupId: String, deviceId: String) extends AbstractBehavior[Map.Command](context) {

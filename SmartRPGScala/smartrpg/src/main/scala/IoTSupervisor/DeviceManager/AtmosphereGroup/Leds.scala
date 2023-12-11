@@ -12,10 +12,9 @@ import akka.actor.typed.scaladsl.LoggerOps
 object Leds {
     def apply(groupId: String, deviceId: String): Behavior[Command] = {
         Behaviors.setup(context => new Leds(context, groupId, deviceId))
-
-        // Ici on définit les différentes commandes (et réponses)
-        sealed trait Command
     }
+    // Ici on définit les différentes commandes (et réponses)
+    sealed trait Command
 }
 
 class Leds(context: ActorContext[Leds.Command], groupId: String, deviceId: String) extends AbstractBehavior[Leds.Command](context) {

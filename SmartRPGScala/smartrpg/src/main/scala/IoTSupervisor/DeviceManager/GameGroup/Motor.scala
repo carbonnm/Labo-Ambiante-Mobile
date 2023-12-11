@@ -12,10 +12,9 @@ import akka.actor.typed.scaladsl.LoggerOps
 object Motor {
     def apply(groupId: String, deviceId: String): Behavior[Command] = {
         Behaviors.setup(context => new Motor(context, groupId, deviceId))
-
-        // Ici on définit les différentes commandes (et réponses)
-        sealed trait Command
     }
+    // Ici on définit les différentes commandes (et réponses)
+    sealed trait Command
 }
 
 class Motor(context: ActorContext[Motor.Command], groupId: String, deviceId: String) extends AbstractBehavior[Motor.Command](context) {
