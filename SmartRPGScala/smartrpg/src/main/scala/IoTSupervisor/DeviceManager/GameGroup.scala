@@ -20,16 +20,17 @@ object GameGroup {
 class GameGroup(context: ActorContext[GameGroup.Command], groupId: String) extends AbstractBehavior[GameGroup.Command](context) {
     import GameGroup._
     //Ici j'import ce dont j'ai besoin du DeviceManager
-    import DeviceManager.{ DeviceRegistered, ReplyDeviceList, RequestDeviceList, RequestTrackDevice }
+    //import DeviceManager.{ DeviceRegistered, ReplyDeviceList, RequestDeviceList, RequestTrackDevice }
 
     //Utilisation d'un map pour chercher les enfants acteurs (sera soit un lecteur RFID soit un moteur pour nous)
-    private var gameIdToActor = Map.empty[String, ActorRef[_]]
+    //private var gameIdToActor = Map.empty[String, ActorRef[_]]
 
 
     //Log start
     context.log.info("GameGroup {} started", groupId)
-
+    
     override def onMessage(msg: Command): Behavior[Command] = {
+        /*
         msg match {
             //groupID à définir mieux en string
             case trackMsg @ RequestTrackDevice("groupId", deviceId, replyTo) =>
@@ -54,6 +55,7 @@ class GameGroup(context: ActorContext[GameGroup.Command], groupId: String) exten
                 this
             }
         }
+        */
     }
 
     override def onSignal: PartialFunction[Signal, Behavior[Command]] = {

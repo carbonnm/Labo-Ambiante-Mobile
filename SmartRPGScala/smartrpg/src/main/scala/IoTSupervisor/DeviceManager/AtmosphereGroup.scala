@@ -20,16 +20,17 @@ object AtmosphereGroup {
 class AtmosphereGroup(context: ActorContext[AtmosphereGroup.Command], groupId: String) extends AbstractBehavior[AtmosphereGroup.Command](context) {
     import AtmosphereGroup._
     //Ici j'import ce dont j'ai besoin du DeviceManager
-    import DeviceManager.{ DeviceRegistered, ReplyDeviceList, RequestDeviceList, RequestTrackDevice }
+    //import DeviceManager.{ DeviceRegistered, ReplyDeviceList, RequestDeviceList, RequestTrackDevice }
 
     //Utilisation d'un map pour chercher les enfants acteurs (à adapter pour nous donc)
-    private var deviceIdToActor = Map.empty[String, ActorRef[Device.Command]]
+    //private var deviceIdToActor = Map.empty[String, ActorRef[Device.Command]]
 
 
     //Log start
     context.log.info("AtmosphereGroup {} started", groupId)
 
     override def onMessage(msg: Command): Behavior[Command] = {
+        /*
         msg match {
             case trackMsg @ RequestTrackDevice(`groupId`, deviceId, replyTo) =>
                 deviceIdToActor.get(deviceId) match {
@@ -52,6 +53,7 @@ class AtmosphereGroup(context: ActorContext[AtmosphereGroup.Command], groupId: S
                 this
             }
         }
+        */
     }
 
     override def onSignal: PartialFunction[Signal, Behavior[Command]] = {
