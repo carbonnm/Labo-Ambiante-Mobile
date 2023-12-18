@@ -23,12 +23,12 @@ import com.pi4j.io.gpio.event.PinEventType;
 object Hello extends Greeting with App {
   // create gpio controller instance
   val gpio: GpioController = GpioFactory.getInstance
-  /*
+  
   val myLed = gpio.provisionDigitalOutputPin(
     RaspiPin.GPIO_04,         
     "MyLed",                    
     PinState.LOW
-  )*/
+  )
 
   println(greeting)
 }
