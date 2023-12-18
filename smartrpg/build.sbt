@@ -8,8 +8,8 @@ ThisBuild / organizationName := "example"
 lazy val root = (project in file("."))
   .settings(
     name := "SmartRPG",
-    libraryDependencies += munit % Test,
-    libraryDependencies += "framboos" % "framboos" % "0.0.1-SNAPSHOT"
+    libraryDependencies += munit % Test
+    libraryDependencies += "com.pi4j" % "pi4j-core" % "1.4"
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
