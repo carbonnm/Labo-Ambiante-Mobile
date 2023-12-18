@@ -9,7 +9,13 @@ lazy val root = (project in file("."))
   .settings(
     name := "TestPins",
     libraryDependencies += munit % Test,
-    libraryDependencies += "com.pi4j" % "pi4j-core" % "1.3"
+    libraryDependencies ++= Seq(
+      "org.slf4j" % "slf4j-api" % "1.7.35",
+      "org.slf4j" % "slf4j-simple" % "1.7.35",
+      "com.pi4j" % "pi4j-core" % "2.3.0",
+      "com.pi4j" % "pi4j-plugin-raspberrypi" % "2.3.0",
+      "com.pi4j" % "pi4j-plugin-pigpio" % "2.3.0"
+    )
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
