@@ -8,7 +8,7 @@ ThisBuild / organizationName := "example"
 lazy val root = (project in file("."))
   .settings(
     name := "SmartRPG",
-    libraryDependencies += munit % Test
+    libraryDependencies += munit % Test,
     libraryDependencies += "com.pi4j" % "pi4j-core" % "1.4"
   )
 
