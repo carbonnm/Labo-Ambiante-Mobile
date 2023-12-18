@@ -29,10 +29,10 @@ object Hello extends Greeting with App {
     RaspiPin.GPIO_04,         
     "MyLed",                    
     PinState.LOW
-  )
+  )*/
 
   println(greeting)
-}*/
+}
 
 trait Greeting {
   lazy val greeting: String = "hello"
