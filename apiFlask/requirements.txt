@@ -1,5 +1,0 @@
-Flask
-flask-restful
-Phidget22
-RPi.GPIO
-requests
