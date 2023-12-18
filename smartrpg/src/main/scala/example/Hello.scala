@@ -21,6 +21,14 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.io.gpio.event.PinEventType;
 
 object Hello extends Greeting with App {
+  // create gpio controller instance
+  final GpioController gpio = GpioFactory.getInstance();
+
+    // provision gpio pins #04 as an output pin and make sure is is set to LOW at startup
+    GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04,   // PIN NUMBER
+                                                               "My LED",           // PIN FRIENDLY NAME (optional)
+                                                               PinState.LOW);      // PIN STARTUP STATE (optional)
+
   println(greeting)
 }
 
