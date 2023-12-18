@@ -48,14 +48,14 @@ object Pi4JMinimalExample {
     })
 
     while (pressCount < 5) {
-        if (led.isHigh) {
-            console.println("LED low")
-            led.low()
-        } else {
-            console.println("LED high")
-            led.high()
-        }
-        Thread.sleep(500 / (pressCount + 1))
+      if (led.getState == DigitalState.HIGH) {
+        console.println("LED low")
+        led.low()
+      } else {
+        console.println("LED high")
+        led.high()
+      }
+      Thread.sleep(500 / (pressCount + 1))
     }
 
     pi4j.shutdown()
