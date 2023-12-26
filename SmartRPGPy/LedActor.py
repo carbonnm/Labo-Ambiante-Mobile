@@ -20,10 +20,13 @@ class LedActor(ThreadingActor):
         """
         if message.get('command') == 'volcan':
             self.volcan()
+
         elif message.get('command') == 'montagne':
             self.montagne()
+
         elif message.get('command') == 'foret':
             self.foret()
+            
         elif message.get('command') == 'desert':
             self.desert()
 
