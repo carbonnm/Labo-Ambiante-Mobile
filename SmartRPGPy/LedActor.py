@@ -14,6 +14,10 @@ class LedActor(ThreadingActor):
         )
 
     def on_receive(self, message):
+        """
+        Reçoit un message qui indique quelle est le décor choisi
+        Cela permet de changer la couleur des leds à une couleur appropriée
+        """
         if message.get('command') == 'volcan':
             self.volcan()
         elif message.get('command') == 'montagne':
