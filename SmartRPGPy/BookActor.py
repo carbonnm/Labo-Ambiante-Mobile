@@ -10,6 +10,9 @@ class BookActor(ThreadingActor):
         self.map_actor = map_actor
 
     def on_receive(self, message):
+        """
+        Cette fonction va réagir à ce qui est envoyé au Book (comme des boutons)
+        """
         if message.get('command') == 1:
             #Il faut setup toute l'ambiance montagne ici
             self.led_actor.tell({'command': 'montagne'})

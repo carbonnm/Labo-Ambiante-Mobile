@@ -12,7 +12,7 @@ class DiceActor(ThreadingActor):
         Lorsqu'un jet critique a lieu, ceci a une incidence sur les leds et sur les baffles
         """
         if message.get('command') == 'critique':
-            pass
+            self.sound_actor.tell({'command': 'critique'})
         
         if message.get('command') == 'excellent':
-            pass
+            self.sound_actor.tell({'command': 'excellent'})

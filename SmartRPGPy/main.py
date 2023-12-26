@@ -13,10 +13,10 @@ servo_actor = ServoMotorActor.start(pin=11)
 rfid_actor = RFIDReaderActor.start(servo_actor)
 led_actor = LedActor.start()
 map_actor = MapActor.start()
-sound_actor = SoundActor.star()
+sound_actor = SoundActor.start()
 
 #Le livre doit avoir en paramètre les leds, le baffle, la map
-book_actor = BookActor(led_actor, sound_actor, map_actor)
+book_actor = BookActor.start(led_actor, sound_actor, map_actor)
 #Le dé a accès au baffle et aux lumières
 dice_actor = DiceActor.start(led_actor, sound_actor)
 
