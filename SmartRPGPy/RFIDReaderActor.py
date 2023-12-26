@@ -1,7 +1,7 @@
 from Phidget22.Phidget import *
 from Phidget22.Devices.RFID import *
 import time
-from pykka import ThreadingActor
+from pykka import *
 
 class RFIDReaderActor(ThreadingActor):
     def __init__(self, servo_actor):

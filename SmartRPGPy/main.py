@@ -1,4 +1,4 @@
-from pykka import ThreadingActor
+from pykka import *
 import RFIDReaderActor
 import ServoMotorActor
 

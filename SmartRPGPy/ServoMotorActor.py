@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from pykka import ThreadingActor
+from pykka import *
 
 class ServoMotorActor(ThreadingActor):
     def __init__(self, pin):
