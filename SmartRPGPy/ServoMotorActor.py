@@ -28,6 +28,8 @@ class ServoMotorActor(ThreadingActor):
             duty_cycle -= step
             time.sleep(delay)
 
+        self.stop()
+
     def stop(self):
         self.servo.stop()
         GPIO.cleanup()
