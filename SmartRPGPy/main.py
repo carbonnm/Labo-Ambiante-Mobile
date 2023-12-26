@@ -1,6 +1,6 @@
 from pykka import *
-import RFIDReaderActor
-import ServoMotorActor
+from RFIDReaderActor import RFIDReaderActor
+from ServoMotorActor import ServoMotorActor
 
 #Lancement des acteurs
 servo_actor = ServoMotorActor.start()
