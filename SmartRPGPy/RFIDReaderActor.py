@@ -12,16 +12,24 @@ class RFIDReaderActor(ThreadingActor):
     def on_receive(self, message):
         if message.get('command') == 'start_reading':
             self.start_reading()
+    """
+    def on_tag(self, tag, protocol):
+        print("Tag: " + str(tag))
+        print("Protocol: " + str(protocol))
+        #Si on trouve un tag, on dit au moteur de se lancer
+        self.servo_actor.tell({'command': 'start_motor'})
+    """
 
     def start_reading(self):
         try:
             self.ch.openWaitForAttachment(1000)
             self.ch.setAntennaEnabled(True)
-            self.ch.setOnTagHandler(self.on_tag)
+            #self.ch.setOnTagHandler(self.on_tag)
             self.ch.open()
 
             while True:
                 if self.ch.getTagPresent() == True:
+                    self.servo_actor.tell({'command': 'start_motor'})
                     return True
                 time.sleep(1)
 
@@ -30,9 +38,3 @@ class RFIDReaderActor(ThreadingActor):
 
         finally:
             self.ch.close()
-
-    def on_tag(self, tag, protocol):
-        print("Tag: " + str(tag))
-        print("Protocol: " + str(protocol))
-        #Si on trouve un tag, on dit au moteur de se lancer
-        self.servo_actor.tell({'command': 'start_motor'})
