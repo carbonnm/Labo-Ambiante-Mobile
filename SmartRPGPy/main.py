@@ -9,8 +9,8 @@ from MapActor import MapActor
 from SoundActor import SoundActor
 
 #Lancement des acteurs
-servo_actor = ServoMotorActor.start(pin=11)
-rfid_actor = RFIDReaderActor.start(servo_actor)
+#servo_actor = ServoMotorActor.start(pin=11)
+#rfid_actor = RFIDReaderActor.start(servo_actor)
 led_actor = LedActor.start()
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
@@ -21,4 +21,4 @@ book_actor = BookActor.start(led_actor, sound_actor, map_actor)
 dice_actor = DiceActor.start(led_actor, sound_actor)
 
 #Démarrer la lecture de tags RFID
-rfid_actor.tell({'command': 'start_reading'})
+#rfid_actor.tell({'command': 'start_reading'})
