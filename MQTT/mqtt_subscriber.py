@@ -37,7 +37,3 @@ class MQTTSubscriber:
         Start the MQTT client loop (blocking call).
         """
         self.client.loop_forever()
-
-if __name__ == "__main__":
-    mqtt_subscriber = MQTTSubscriber("localhost", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
-    mqtt_subscriber.start()
