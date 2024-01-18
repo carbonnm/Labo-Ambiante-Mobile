@@ -1,17 +1,15 @@
 from pykka import *
 import time
-from mqtt_subscriber import MQTTSubscriber
 
-class BookActor(ThreadingActor, MQTTSubscriber):
+class BookActor(ThreadingActor):
 
-    def __init__(self, led_actor, sound_actor, map_actor):
+    def __init__(self, led_actor, sound_actor, map_actor, mqtt_subscriber):
         super(BookActor, self).__init__()
         self.led_actor = led_actor
         self.sound_actor = sound_actor
         self.map_actor = map_actor
-
-    def on_message(self, client, userdata, message):
-        print(f"marie est trop belle {message}")
+        self.mqtt_subscriber = mqtt_subscriber
+        self.mqtt_subscriber.set_callback(self.on_receive)
 
     def on_receive(self, message):
         """
