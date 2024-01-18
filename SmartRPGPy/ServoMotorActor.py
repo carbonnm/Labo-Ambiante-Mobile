@@ -6,7 +6,7 @@ class ServoMotorActor(ThreadingActor):
     def __init__(self, pin):
         super(ServoMotorActor, self).__init__()
         self.pin = pin
-        #GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.OUT)
         self.servo = GPIO.PWM(self.pin, 50)
         self.servo.start(0)

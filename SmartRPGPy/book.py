@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from mqtt_publisher import MQTTPublisher
 
-#GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 
 pages_pin = {1 : 7, 2 : 11, 3 : 13, 4 : 15}
 baguette_pin = 6
