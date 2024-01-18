@@ -37,7 +37,13 @@ class MQTTSubscriber:
         """
         Callback function when a PUBLISH message is received from the server.
         """
-        print(message.topic+" "+str(message.payload))
+        payload = message.payload.decode('utf-8')
+        try:
+            payload_dict = eval(payload)  # Assuming payload is a dictionary
+            if self.callback:
+                self.callback(payload_dict)
+        except Exception as e:
+            print(f"Error decoding message: {e}")
 
     def start(self):
         """
