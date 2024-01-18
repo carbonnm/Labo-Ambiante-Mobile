@@ -11,7 +11,7 @@ baguette_pin = 6
 def main():
     mqtt_publisher = MQTTPublisher("192.168.0.238", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
 
-    for pin_button, broche in pages_pin:
+    for pin_button, broche in pages_pin.items():
         GPIO.setup(broche, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     try:
