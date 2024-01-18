@@ -1,13 +1,18 @@
 import paho.mqtt.publish as publish
-import time
 
-MQTT_SERVER = "192.168.0.238"
-MQTT_PORT = 1883
-MQTT_PATH = "test_channel"
+class MQTTPublisher:
+    def __init__(self, server, port, username, password, channel):
+        self.mqtt_server = server
+        self.mqtt_port = port
+        self.username = username
+        self.password = password
+        self.default_channel = channel
 
-username = "SmartRPG"
-password = "SmartRPG"
+    def publish_message(self, message, channel=None):
+        """
+        Publishes a message to the specified channel or the default channel if not provided.
+        """
+        if channel is None:
+            channel = self.default_channel
 
-while True:
-    publish.single(MQTT_PATH, "Hello MQTT CLIENT", hostname=MQTT_SEVER, port=MQTT_PORT, auth={'username': username, 'password': password})
-    time.sleep(1)
+        publish.single(channel, message, hostname=self.mqtt_server, port=self.mqtt_port, auth={'username': self.username, 'password': self.password})
