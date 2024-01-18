@@ -1,34 +1,43 @@
 import paho.mqtt.client as mqtt
 
-MQTT_SERVER = "localhost"
-MQTT_PORT = 1883
-MQTT_PATH = "test_channel"
+class MQTTSubscriber:
+    def __init__(self, server, port, username, password, channel):
+        self.mqtt_server = server
+        self.mqtt_port = port
+        self.username = username
+        self. password = password
+        self.channel = channel
 
-username = "SmartRPG"
-password = "SmartRPG"
+        # Create a MQTT client instance
+        self.client = mqtt.Client()
+        self.client.username_pw_set(username, password)
 
-# The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+        # Set the callbacks
+        self.client.on_connect = self.on_connect
+        self.client.on_message = self.on_message
 
-    # Subscribing in on_connect() means that if we lose the connection and
-    # reconnect then subscriptions will be renewed.
-    client.subscribe(MQTT_PATH)
+        # Connect to the broker
+        self.client.connect(self.mqtt_server, self.mqtt_port, 60)
 
-# The callback for when a PUBLISH message is received from the server.
-def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
-    # more callbacks, etc
+    def on_connect(self, client, userdata, flag, rc):
+        """
+        Callback function when the client connects to the MQTT broker.
+        """
+        print("Connected with result code "+str(rc))
+        client.subscribe(self.channel)
 
-client = mqtt.Client()
-client.username_pw_set(username, password)
-client.on_connect = on_connect
-client.on_message = on_message
+    def on_message(self, client, userdata, message):
+        """
+        Callback function when a PUBLISH message is received from the server.
+        """
+        print(message.topic+" "+str(message.payload))
 
-client.connect(MQTT_SERVER, MQTT_PORT, 60)
+    def start(self):
+        """
+        Start the MQTT client loop (blocking call).
+        """
+        self.client.loop_forever()
 
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
-client.loop_forever()
+if __name__ == "__main__":
+    mqtt_subscriber = MQTTSubscriber("localhost", 1883, "SmartRPG", "SmartRPG", "test_channel")
+    mqtt_subscriber.start()
