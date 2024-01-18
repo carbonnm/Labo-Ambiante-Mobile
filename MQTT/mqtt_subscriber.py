@@ -39,5 +39,5 @@ class MQTTSubscriber:
         self.client.loop_forever()
 
 if __name__ == "__main__":
-    mqtt_subscriber = MQTTSubscriber("localhost", 1883, "SmartRPG", "SmartRPG", "test_channel")
+    mqtt_subscriber = MQTTSubscriber("localhost", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
     mqtt_subscriber.start()
