@@ -16,9 +16,3 @@ class MQTTPublisher:
             channel = self.default_channel
 
         publish.single(channel, message, hostname=self.mqtt_server, port=self.mqtt_port, auth={'username': self.username, 'password': self.password})
-
-if __name__ == "__main__":
-    mqtt_publisher = MQTTPublisher("192.168.0.238", 1883, "SmartRPG", "SmartRPG", "test_channel")
-
-    while True:
-        mqtt_publisher.publish_message("Class OK")
