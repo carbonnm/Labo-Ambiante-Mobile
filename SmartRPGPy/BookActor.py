@@ -1,6 +1,6 @@
 from pykka import *
 import time
-from SmartRPGPy.mqtt_subscriber import MQTTSubscriber
+from mqtt_subscriber import MQTTSubscriber
 
 class BookActor(ThreadingActor, MQTTSubscriber):
 
