@@ -12,7 +12,7 @@ def page_touched(channel):
 
 for pin in pages_pin:
     GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.add_event_detect(baguette_pin, GPIO.FALLING, callback = page_touched, bouncetime=300)
+    GPIO.add_event_detect(pin, GPIO.FALLING, callback = page_touched, bouncetime=300)
 
 GPIO.setup(baguette_pin, GPIO.IN)
 GPIO.add_event_detect(baguette_pin, GPIO.FALLING, callback=page_touched, bouncetime=300)
