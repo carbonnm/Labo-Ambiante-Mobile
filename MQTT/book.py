@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from MQTT.mqtt_publisher import MQTTPublisher
+from mqtt_publisher import MQTTPublisher
 
 GPIO.setmode(GPIO.BOARD)
 
