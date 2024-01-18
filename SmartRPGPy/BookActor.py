@@ -9,7 +9,15 @@ class BookActor(ThreadingActor):
         self.sound_actor = sound_actor
         self.map_actor = map_actor
         self.mqtt_subscriber = mqtt_subscriber
-        self.mqtt_subscriber.set_callback(self.on_receive)
+        self.mqtt_subscriber.set_callback(self.on_mqtt_message)
+
+    def on_mqtt_message(self, message):
+        """
+        Callback function to be called when a message is received from MQTT.
+        """
+        command = message.get('command')
+        self.tell({'command': command})  # Tell itself the received command
+        print(command)
 
     def on_receive(self, message):
         """
