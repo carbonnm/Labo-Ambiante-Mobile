@@ -16,7 +16,7 @@ class BookActor(ThreadingActor):
         Callback function to be called when a message is received from MQTT.
         """
         #command = message.get('command')
-        #self.tell({'command': command})  # Tell itself the received command
+        self.tell({'command': message})  # Tell itself the received command
         print(message)
 
     def on_receive(self, message):
