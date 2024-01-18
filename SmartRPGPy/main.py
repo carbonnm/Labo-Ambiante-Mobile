@@ -7,6 +7,9 @@ from BookActor import BookActor
 from DiceActor import DiceActor
 from MapActor import MapActor
 from SoundActor import SoundActor
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
 
 #Lancement des acteurs
 servo_actor = ServoMotorActor.start(pin=11)
