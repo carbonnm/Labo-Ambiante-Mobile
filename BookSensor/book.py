@@ -3,7 +3,7 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 
-pages_pin = [2, 3, 4, 14]
+pages_pin = [17, 18, 22, 23]
 baguette_pin = 6
 
 def page_touched(channel):
@@ -11,10 +11,11 @@ def page_touched(channel):
     print(f"Tu as touché la page {page_number} avec la baguette magique")
 
 for pin in pages_pin:
-    GPIO.setup(pin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-    GPIO.add_event_detect(baguette_pin, GPIO.FAILING, callback = page_touched, bouncetime=300)
+    GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.add_event_detect(baguette_pin, GPIO.FALLING, callback = page_touched, bouncetime=300)
 
-GPIO.setup(baguette_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(baguette_pin, GPIO.IN)
+GPIO.add_event_detect(baguette_pin, GPIO.FALLING, callback=page_touched, bouncetime=300)
 
 try:
     print("En attente des touches de la baguette magique sur les pages...")
