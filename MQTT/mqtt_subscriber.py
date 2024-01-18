@@ -1,7 +1,11 @@
 import paho.mqtt.client as mqtt
 
 MQTT_SERVER = "localhost"
+MQTT_PORT = 1883
 MQTT_PATH = "test_channel"
+
+username = "SmartRPG"
+password = "SmartRPG"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -17,10 +21,11 @@ def on_message(client, userdata, msg):
     # more callbacks, etc
 
 client = mqtt.Client()
+client.username_pw_set(username, password)
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect(MQTT_SERVER, 1883, 60)
+client.connect(MQTT_SERVER, MQTT_PORT, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
