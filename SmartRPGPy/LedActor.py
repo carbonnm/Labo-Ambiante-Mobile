@@ -18,6 +18,8 @@ class LedActor(ThreadingActor):
         Reçoit un message qui indique quelle est le décor choisi
         Cela permet de changer la couleur des leds à une couleur appropriée
         """
+        if message.get('command') == 'reset':
+            pass
         if message.get('command') == 'volcan':
             self.volcan()
 
