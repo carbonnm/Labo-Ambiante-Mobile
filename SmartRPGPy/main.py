@@ -13,9 +13,10 @@ from mqtt_subscriber import MQTTSubscriber
 #servo_actor = ServoMotorActor.start(pin=11)
 #rfid_actor = RFIDReaderActor.start(servo_actor)
 led_actor = LedActor.start()
+led_actor.tell({'command':'montagne'})
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
-mqtt_subscriber = MQTTSubscriber("192.168.0.238", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
+mqtt_subscriber = MQTTSubscriber("138.48.254.33", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
 
 #Le livre doit avoir en paramètre les leds, le baffle, la map
 book_actor = BookActor.start(led_actor, sound_actor, map_actor, mqtt_subscriber)
