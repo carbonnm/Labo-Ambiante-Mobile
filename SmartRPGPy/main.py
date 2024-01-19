@@ -15,7 +15,7 @@ from mqtt_subscriber import MQTTSubscriber
 led_actor = LedActor.start()
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
-mqtt_subscriber = MQTTSubscriber("192.168.0.238", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
+mqtt_subscriber = MQTTSubscriber("138.48.106.155", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
 
 #Le livre doit avoir en paramètre les leds, le baffle, la map
 book_actor = BookActor.start(led_actor, sound_actor, map_actor, mqtt_subscriber)
