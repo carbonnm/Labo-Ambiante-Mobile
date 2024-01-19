@@ -1,4 +1,5 @@
 from pykka import *
+import keyboard
 
 class SoundActor(ThreadingActor):
 
@@ -13,19 +14,19 @@ class SoundActor(ThreadingActor):
         """
 
         if message.get('command') == 'desert':
-            pass
+            keyboard.press_and_release('c')
 
         elif message.get('command') == 'volcan':
-            pass
+            keyboard.press_and_release('v')
 
         elif message.get('command') == 'montagne':
-            pass
+            keyboard.press_and_release('x')
 
         elif message.get('command') == 'foret':
-            pass
+            keyboard.press_and_release('w')
 
         elif message.get('command') == 'critique':
-            pass
+            keyboard.press_and_release('s')
 
         elif message.get('command') == 'excellent':
-            pass
+            keyboard.press_and_release('q')

@@ -1,4 +1,5 @@
 from pykka import *
+import keyboard
 
 class MapActor(ThreadingActor):
 
@@ -10,13 +11,13 @@ class MapActor(ThreadingActor):
         Cette fonction intercepte les messages qui indiquent un changement de map
         """
         if message.get('command') == 'desert':
-            pass
+            keyboard.press_and_release('c')
 
         elif message.get('command') == 'foret':
-            pass
+            keyboard.press_and_release('w')
 
         elif message.get('command') == 'volcan':
-            pass
+            keyboard.press_and_release('v')
         
         elif message.get('command') == 'montagne':
-            pass
+            keyboard.press_and_release('x')
