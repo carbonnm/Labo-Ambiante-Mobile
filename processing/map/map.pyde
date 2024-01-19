@@ -2,21 +2,19 @@ from WeatherSystem import WeatherSystem
 from MapChanger import MapChanger
 from DiceSystem import DiceSystem
 
-from Firework import Firework
-
-width=1800
-height= 1000
+width=1920
+height= 1080
 
 def setup():
     global ws, m, d
     size(width,height)
     background(0,0,0)
+    frameRate(30)
     
     d = DiceSystem()
-    
     m = MapChanger()
-
     ws = WeatherSystem()
+    
     ws.setup_weather()
     ws.set_mode("rain")
     
@@ -39,8 +37,10 @@ def keyPressed():
   elif key == 'v':
     ws.set_mode("lava")
     m.change_map("volcan")
-  elif key == 'n':
+  elif key == 'q':
     d.win()
+  elif key == 's':
+    d.fail()
 
 def draw():
             

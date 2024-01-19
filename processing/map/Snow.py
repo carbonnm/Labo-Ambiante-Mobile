@@ -21,6 +21,7 @@ class Snow:
     def display(self):
         fill(self.c,self.opacity)
         stroke(0,self.opacity)
+        strokeWeight(1)
         #noStroke()
         ellipse(self.x,self.y,self.ellipseSize,self.ellipseSize)
         self.update()
