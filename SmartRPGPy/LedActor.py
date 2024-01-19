@@ -29,6 +29,46 @@ class LedActor(ThreadingActor):
             
         elif message.get('command') == 'desert':
             self.desert()
+        
+        elif message.get('command') == 'mauvais':
+            self.mauvais(1, 3)
+
+        elif message.get('command') == 'neutre':
+            self.neutre(1, 3)
+
+        elif message.get('command') == 'excellent':
+            self.excellent(1, 3)
+    
+
+    def mauvais(self, duree, repetitions):
+        for _ in range(repetitions):
+            self.pixels.fill((255, 0, 0))
+            self.pixels.show()
+            time.sleep(duree)
+            self.pixels.fill((0, 0, 0))
+            self.pixels.show()
+            time.sleep(duree)
+
+
+    def neutre(self, duree, repetitions):
+        for _ in range(repetitions):
+            self.pixels.fill((255, 255, 255))
+            self.pixels.show()
+            time.sleep(duree)
+            self.pixels.fill((0, 0, 0))
+            self.pixels.show()
+            time.sleep(duree)
+
+
+    def excellent(self, duree, repetitions):
+        for _ in range(repetitions):
+            self.pixels.fill((0, 255, 0))
+            self.pixels.show()
+            time.sleep(duree)
+            self.pixels.fill((0, 0, 0))
+            self.pixels.show()
+            time.sleep(duree)
+
 
     def volcan(self):
         for i in range(256):

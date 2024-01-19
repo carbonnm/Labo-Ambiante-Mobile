@@ -19,12 +19,15 @@ class DiceActor(ThreadingActor):
 
         if message.get('command') == 'mauvais':
             self.sound_actor.tell({'command': 'mauvais'})
+            self.led_actor.tell({'command': 'mauvais'})
         
         if message.get('command') == 'excellent':
             self.sound_actor.tell({'command': 'excellent'})
+            self.led_actor.tell({'command': 'excellent'})
 
         if message.get('command') == 'neutre':
             self.sound_actor.tell({'command': 'neutre'})
+            self.led_actor.tell({'command': 'neutre'})
 
 
     
