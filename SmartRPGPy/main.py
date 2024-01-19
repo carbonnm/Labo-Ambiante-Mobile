@@ -10,8 +10,8 @@ from SoundActor import SoundActor
 from mqtt_subscriber import MQTTSubscriber
 
 #Lancement des acteurs
-servo_actor = ServoMotorActor.start(pin=11)
-rfid_actor = RFIDReaderActor.start(servo_actor)
+#servo_actor = ServoMotorActor.start(pin=11)
+#rfid_actor = RFIDReaderActor.start(servo_actor)
 led_actor = LedActor.start()
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
@@ -24,4 +24,4 @@ mqtt_subscriber.start()
 dice_actor = DiceActor.start(led_actor, sound_actor)
 
 #Démarrer la lecture de tags RFID
-rfid_actor.tell({'command': 'start_reading'})
+#rfid_actor.tell({'command': 'start_reading'})
