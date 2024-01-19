@@ -10,7 +10,6 @@ class DiceActor(ThreadingActor):
         super(DiceActor, self).__init__()
         self.led_actor = led_actor
         self.sound_actor = sound_actor
-        asyncio.run(self.main()) 
        
 
     def on_receive(self, message):
