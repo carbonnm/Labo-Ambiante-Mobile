@@ -13,10 +13,11 @@ from SoundActor import SoundActor
 from mqtt_subscriber import MQTTSubscriber
 
 #Lancement des acteurs
-servo_actor = ServoMotorActor.start(pin=11)
+servo_actor = ServoMotorActor.start()
 rfid_actor = RFIDReaderActor.start(servo_actor)
-led_actor = LedActor.start()
-led_actor.tell({'command':'montagne'})
+servo_actor.tell({'command':'start_motor'})
+#led_actor = LedActor.start()
+#led_actor.tell({'command':'montagne'})
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
 #mqtt_subscriber = MQTTSubscriber("138.48.254.33", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
@@ -117,4 +118,4 @@ async def main():
 #asyncio.run(main())
 
 #Démarrer la lecture de tags RFID
-#rfid_actor.tell({'command': 'start_reading'})
+rfid_actor.tell({'command': 'start_reading'})

@@ -21,6 +21,7 @@ class RFIDReaderActor(ThreadingActor):
 
             while True:
                 if self.ch.getTagPresent() == True:
+                    print("Tag trouvé")
                     self.servo_actor.tell({'command': 'start_motor'})
                     return True
                 time.sleep(1)

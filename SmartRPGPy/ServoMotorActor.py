@@ -3,18 +3,21 @@ import time
 from pykka import *
 
 class ServoMotorActor(ThreadingActor):
-    def __init__(self, pin):
+    def __init__(self):
         super(ServoMotorActor, self).__init__()
-        self.pin = pin
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.servo = GPIO.PWM(self.pin, 50)
+       	#GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(11, GPIO.OUT)
+        self.servo = GPIO.PWM(11, 50)
         self.servo.start(0)
         time.sleep(1)
 
     def on_receive(self, message):
         if message.get('command') == 'start_motor':
-            self.start_motor(2, 12, 1, 0.1)
+            print("Moteur active")
+            self.servo.ChangeDutyCycle(3)
+            sleep(1)
+            self.servo.ChangeDutyCycle(12)
+            sleep(1)
 
     def start_motor(self, start_duty, end_duty, step, delay):
         duty_cycle = start_duty
