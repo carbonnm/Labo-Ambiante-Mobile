@@ -10,10 +10,10 @@ from SoundActor import SoundActor
 from mqtt_subscriber import MQTTSubscriber
 
 #Lancement des acteurs
-#servo_actor = ServoMotorActor.start(pin=11)
-#rfid_actor = RFIDReaderActor.start(servo_actor)
+servo_actor = ServoMotorActor.start(pin=11)
+rfid_actor = RFIDReaderActor.start(servo_actor)
 led_actor = LedActor.start()
-led_actor.tell({'command':'montagne'})
+led_actor.tell({'command':'desert'})
 map_actor = MapActor.start()
 sound_actor = SoundActor.start()
 #mqtt_subscriber = MQTTSubscriber("138.48.254.33", 1883, "SmartRPG", "SmartRPG", "channel_ambiances")
@@ -23,7 +23,7 @@ sound_actor = SoundActor.start()
 #book_actor = BookActor.start(led_actor, sound_actor, map_actor, mqtt_subscriber)
 #mqtt_subscriber.start()
 #Le dé a accès au baffle et aux lumières
-dice_actor = DiceActor.start(led_actor, sound_actor)
+#dice_actor = DiceActor.start(led_actor, sound_actor)
 
 
 async def notification_callback(number, stability_descriptor): #dice_actor
@@ -111,7 +111,7 @@ async def main():
         await asyncio.sleep(100)
         await dice.set_led(off_rgb, off_rgb)
 
-asyncio.run(main())
+#asyncio.run(main())
 
 #Démarrer la lecture de tags RFID
-#rfid_actor.tell({'command': 'start_reading'})
+rfid_actor.tell({'command': 'start_reading'})
