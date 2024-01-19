@@ -19,7 +19,9 @@ class LedActor(ThreadingActor):
         Cela permet de changer la couleur des leds à une couleur appropriée
         """
         if message.get('command') == 'reset':
-            pass
+            for i in range(256):
+                self.pixels.fill(0, 0, 0)
+                
         if message.get('command') == 'volcan':
             self.volcan()
 
