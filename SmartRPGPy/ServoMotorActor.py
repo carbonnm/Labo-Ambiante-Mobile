@@ -14,10 +14,16 @@ class ServoMotorActor(ThreadingActor):
     def on_receive(self, message):
         if message.get('command') == 'start_motor':
             print("Moteur active")
-            self.servo.ChangeDutyCycle(3)
-            sleep(1)
-            self.servo.ChangeDutyCycle(12)
-            sleep(1)
+            duty = 2
+            while duty <= 12:
+                self.servo.ChangeDutyCycle(duty)
+                duty += 1
+                time.sleep(0.1)
+
+            while duty >= 2:
+                self.servo.ChangeDutyCycle(duty)
+                duty -= 1
+                time.sleep(0.1)
 
     def start_motor(self, start_duty, end_duty, step, delay):
         duty_cycle = start_duty
