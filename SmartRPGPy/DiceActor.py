@@ -117,6 +117,9 @@ class DiceActor(ThreadingActor):
             print(f"Colour: {colour}")
             print(f"Battery level: {battery_level}")
 
+            await asyncio.sleep(5)
+            await dice.set_led(off_rgb, off_rgb)
+
             print("Listening to position updates. Move your dice")
             
             # Passer l'acteur Pykka à la fonction de rappel
