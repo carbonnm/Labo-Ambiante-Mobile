@@ -14,7 +14,9 @@ class DiceActor(ThreadingActor):
 
     def on_receive(self, message):
         """
-        Lorsqu'un jet critique ou excellent a lieu, ceci a une incidence sur les leds et sur les baffles et il envoie un message lorsque le dé est connecté
+        Lorsqu'un jet critique mauvais ou excellent a lieu, ceci a une incidence sur les leds et sur les baffles 
+        Parameters:  
+        self: current instance of the class
         """
 
         if message == "mauvais":
@@ -31,16 +33,17 @@ class DiceActor(ThreadingActor):
 
 
     
-    async def notification_callback(self, number, stability_descriptor): #dice_actor
+    async def notification_callback(self, number, stability_descriptor): 
         """ 
         GoDice number notification callback.
         Called each time GoDice is flipped, receiving flip event data:
-        :param number: a rolled number
-        :param stability_descriptor: an additional value clarifying device movement state, ie stable, rolling...
+        Parameters:
+        self: current instance of the class
+        number: a rolled number
+        stability_descriptor: an additional value clarifying device movement state, ie stable, rolling...
         """
-        print(f"Dice value: {number}, stability descriptor: {stability_descriptor}")
+        print(f"Dice value: {number}, Stability descriptor: {stability_descriptor}")
         # Envoyer un message à l'acteur Pykka pour traiter l'événement
-        #dice_actor.tell({'command': 'mauvais' if number == 1 else 'excellent' == 6 else 'neutre'})
         if number == 1:
             self.on_receive("mauvais")
         elif number == 6:
@@ -52,6 +55,9 @@ class DiceActor(ThreadingActor):
     def filter_godice_devices(self, dev_advdata_tuples):
         """
         Receives all discovered devices and returns only GoDice devices
+        Parameters:
+        self: current instance of the class
+        dev_advdata_tuples: tuples of devices informations
         """
         return [
             (dev, adv_data)
@@ -62,13 +68,19 @@ class DiceActor(ThreadingActor):
     def print_device_info(self, devices):
         """
         Prints summary of discovered Godice devices
+        Parameters:
+        self: current instance of the class
+        devices: list of Godice devices
         """
         for dev, adv_data in devices:
             print(f"Name : {dev.name}, Address : {dev.address}, rssi : {adv_data.rssi}")
 
-    def select_closest_device(self, dev_advdata_tuples): # à changer car un seul dé est utilisé
+    def select_closest_device(self, dev_advdata_tuples): 
         """
         Finds the closest device based on RSSI are returns it
+        Parameters:
+        self: current instance of the class
+        dev_advdata_tuples: tuples of devices informations
         """
         def _rssi_as_key(dev_advdata):
             _, adv_data = dev_advdata
@@ -92,12 +104,7 @@ class DiceActor(ThreadingActor):
         async with godice.create(client, godice.Shell.D6) as dice:
             print(f"Connected to {dev.name}")
 
-            # Créer l'acteur Pykka pour gérer les événements du dé
-            #led_actor = LedActor.start()
-            #sound_actor = SoundActor.start()
-            #dice_actor = DiceActor.start(led_actor, sound_actor)
 
-            blue_rgb = (0, 0, 255)
             yellow_rgb = (255, 255, 0)
             off_rgb = (0, 0, 0)
             orange_rgb = (255,68,51)
@@ -110,13 +117,14 @@ class DiceActor(ThreadingActor):
             print(f"Colour: {colour}")
             print(f"Battery level: {battery_level}")
 
+            await asyncio.sleep(5)
+            await dice.set_led(off_rgb, off_rgb)
+
             print("Listening to position updates. Move your dice")
+            
             # Passer l'acteur Pykka à la fonction de rappel
-            await dice.subscribe_number_notification(self.notification_callback) #lambda num, descr: notification_callback(num, descr, dice_actor)
+            await dice.subscribe_number_notification(self.notification_callback) 
             await asyncio.sleep(100)
             await dice.set_led(off_rgb, off_rgb)
 
-"""
-if __name__ == "__main__":
-    asyncio.run(main()) 
-"""
+
