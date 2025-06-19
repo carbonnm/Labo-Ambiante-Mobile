@@ -29,6 +29,11 @@ Concevoir une **table de jeu de rôle connectée** capable d’enrichir l’exp�
 - **Livre et baguette** connectés (interrupteur capacitif pour changer d’ambiance)
 - **Baffles** (ambiance sonore)
 
+| ![Modèle 3D Clef RFID](Assets/ClefRFID.png) | ![Modèle 3D Coffre Moteur](Assets/CoffreMoteur.png) |
+|--------------------------------|--------------------------------|
+| ![Pièces imprimées 3D](Assets/impression3D.png) | ![Table de jeu](Assets/TableDeJeu.png) |
+
+
 ### 🧬 Architecture logicielle
 
 - **Python** (langage principal)
@@ -75,10 +80,6 @@ git clone https://github.com/carbonnm/Labo-Ambiante-Mobile.git
 3. Lancer les scripts liés au livre et à la baguette sur le second Pi
 4. Vérifier la connexion MQTT, Bluetooth, GPIO
 5. Interagir via les objets tangibles
-
----
-
-## 🧪 Démo
 
 ---
 
