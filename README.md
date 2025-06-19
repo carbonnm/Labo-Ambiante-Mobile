@@ -44,6 +44,8 @@ Concevoir une **table de jeu de rôle connectée** capable d’enrichir l’exp�
 - **GPIO** via `RPi.GPIO` et `Phidget22`
 - **Libs LED** : `board`, `neopixel`
 
+![Senseurs/Actuateurs et modèle acteur](Assets/ActorModelMQTT.png)
+
 ---
 
 ## ✨ Fonctionnalités
